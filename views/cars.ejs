@@ -1,0 +1,40 @@
+<%- include('partials/header'); -%>
+
+<ul class="recipes">
+  <!-- <li class="car">
+    image <br>
+    title <br>
+    description
+  </li> -->
+  <% if (cars && cars.length !== 0) {%>
+		<% cars.forEach((car) => { %>
+			<% if(car.status) {%> 
+				<a class="list" href="/usedCars/<%=car.usedCarId %>">
+			<% } else{%>
+				<a class="list" href="/newCars/<%=car.newCarId %>">
+			<% } %> 
+			<li class="recipe"> 
+				<img src= <%= car.picture %> alt="Image not found">
+				<h4><%= car.name %> </h4>
+				<p><%= car.manufactureCompany %> : <%= car.manufactureYear %> </p>
+                <p>ModelNumber :<%= car.modelNumber %> </p>
+				<p> Price :  <%= car.sellingPrice %></p>
+				<% if(car.status) {%> 
+					<p> Status : <%= car.status %></p>
+					<p> Distance Driven : <%= car.distanceDriven %></p>
+				<% } %> 
+			</li> 	
+
+			</a>		
+		<% }) %> 
+	<% } else { %>
+		<li class="recipe">
+			<img src="images/cars/car-repair.png" alt="404">
+			<h4> No cars available</h4>
+		</li>
+	<% } %> 
+</ul>
+	<!-- <a href="/smoothies/add" class="btn add">Add Smoothie</a> -->
+  
+
+<%- include('partials/footer'); -%>

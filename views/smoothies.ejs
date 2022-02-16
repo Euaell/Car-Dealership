@@ -1,0 +1,28 @@
+<%- include('partials/header'); -%>
+
+<ul class="recipes">
+  <!-- <li class="recipe">
+    image <br>
+    title <br>
+    description
+  </li> -->
+  <% if (recipies || recipies.length !== 0) {%>
+		<% recipies.forEach((recipe) => { %>
+			<li class="recipe">
+				<img src= <%= recipe.image %> alt="Image not found">
+				<h4><%= recipe.title %> </h4>
+				<p><%= recipe.description %> </p>
+			</li> 			
+		<% }) %> 
+	<% } else { %>
+		<li class="recipe">
+			<img src="icons/smoothie.png" alt="404">
+			<h4> No Recipies yet</h4>
+			<p>you can enter recipies to see them here</p>
+		</li>
+	<% } %> 
+</ul>
+	<a href="/smoothies/add" class="btn add">Add Smoothie</a>
+  
+
+<%- include('partials/footer'); -%>

@@ -1,0 +1,40 @@
+<%- include("partials/header.ejs") -%> 
+
+<img src="" alt="">
+<form action="" method="post">
+    <label for="qun">Quantity: </label>
+    <input type="text" name="qun" id="qun">
+    <div class="orderd error"></div>
+    <button>Order</button> <!-- automatically fires submit event when pressed -->
+</form>
+
+<script>
+    const form = document.querySelector("form");
+    const ordered = document.querySelector(".orderd.error");
+
+    ordered.textContent = "";
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault(); // reset the default action which is refresh
+
+        // get the body values
+        const qun = form.qun.value;
+        
+        try {
+            const res = await fetch(`/sparePart/${id}`, {
+                method: "POST",
+                body: JSON.stringify({qun}),
+                headers: {"Content-Type" : "application/json"}
+            }).then((res) => {
+                return res.json(); // parse the response recieved from fetch into a json object
+            }).then((data) => {
+                ordered.textContent = data.ord;
+                
+            })
+            // console.log(res);
+        } catch (err) {
+            console.log(err.message);
+        }
+    })
+</script>
+<%- include("partials/footer.ejs") -%> 
