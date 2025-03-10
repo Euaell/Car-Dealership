@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "root",
+    "password": "password",
+    "database": "car_dealership",
+    "host": "mysql",
+    "dialect": "mysql",
+    "logging": true
+  },
+  "test": {
+    "username": "root",
+    "password": "password",
+    "database": "car_dealership_test",
+    "host": "mysql",
+    "dialect": "mysql",
+    "logging": false
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "car_dealership_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "logging": false,
+    "use_env_variable": "DATABASE_URL"
+  }
+}
