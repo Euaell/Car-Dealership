@@ -1,42 +1,17 @@
 # Car Dealership Management System
 
-A modern, full-stack application for managing a car dealership business. This system includes features for inventory management, customer management, sales processing, service scheduling, and more.
+A comprehensive management system for car dealerships, featuring inventory management, sales tracking, customer management, service scheduling, and spare parts inventory.
 
 ## Features
 
-- **User Management**
-
-  - Role-based access control (Admin, Staff, Customer, Salesperson)
-  - Secure authentication with JWT
-  - User profiles and preferences
-
-- **Inventory Management**
-
-  - New and used car listings
-  - Spare parts inventory
-  - Advanced search and filtering
-  - 360° view and virtual showroom
-
-- **Sales Process**
-
-  - Test drive scheduling
-  - Digital documentation
-  - Financing calculator
-  - Trade-in value estimator
-  - Payment processing
-
-- **After-sales Service**
-
-  - Service scheduling
-  - Maintenance reminders
-  - Service history tracking
-  - Parts ordering
-
-- **Analytics and Reporting**
-  - Sales dashboard
-  - Inventory reports
-  - Customer analytics
-  - Performance metrics
+- **User Management**: Role-based access control with different permissions for administrators, staff, and customers
+- **Car Inventory**: Manage new and used cars with detailed specifications, images, and pricing
+- **Spare Parts Inventory**: Track spare parts with stock levels, pricing, and compatibility information
+- **Sales Management**: Process sales transactions, generate invoices, and track commissions
+- **Service Department**: Schedule and manage service appointments, track repairs, and maintenance
+- **Customer Management**: Maintain customer records, purchase history, and preferences
+- **Dashboard & Reports**: Comprehensive analytics and reporting for business insights
+- **Responsive UI**: Modern, mobile-friendly interface for both staff and customers
 
 ## Tech Stack
 
@@ -44,119 +19,185 @@ A modern, full-stack application for managing a car dealership business. This sy
 
 - Node.js with Express
 - MySQL database with Sequelize ORM
-- Redis for caching and session management
-- JWT for authentication
+- JWT authentication
+- RESTful API design
 - Winston for logging
 
 ### Frontend
 
-- Next.js with React
+- Next.js (React framework)
 - Tailwind CSS for styling
-- Zustand for state management
-- SWR for data fetching
-- Chart.js for analytics
-
-### DevOps
-
-- Docker and Docker Compose for containerization
-- Environment-based configuration
-
-## Getting Started
-
-### Prerequisites
-
-- Docker and Docker Compose
-- Node.js (v18+)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/car-dealership.git
-   cd car-dealership
-   ```
-
-2. Start the development environment:
-
-   ```bash
-   docker-compose up
-   ```
-
-3. Access the application:
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:3001
-   - API Documentation: http://localhost:3001/api-docs
-
-### Default Credentials
-
-- Admin:
-  - Email: admin@cardealership.com
-  - Password: admin123
+- React Hook Form for form handling
+- Recharts for data visualization
+- Responsive design with mobile support
 
 ## Project Structure
 
 ```
 car-dealership/
-├── backend/                # Node.js API
+├── backend/                # Backend API server
 │   ├── src/
 │   │   ├── config/         # Configuration files
 │   │   ├── controllers/    # Request handlers
-│   │   ├── middleware/     # Express middleware
-│   │   ├── models/         # Sequelize models
+│   │   ├── middleware/     # Custom middleware
+│   │   ├── models/         # Database models
 │   │   ├── routes/         # API routes
 │   │   ├── services/       # Business logic
 │   │   ├── utils/          # Utility functions
-│   │   └── index.js        # Entry point
-│   ├── .env                # Environment variables
-│   └── package.json        # Dependencies
-├── frontend/               # Next.js application
+│   │   └── index.js        # Application entry point
+│   ├── .env                # Environment variables (not in repo)
+│   └── package.json        # Backend dependencies
+│
+├── frontend/               # Next.js frontend
 │   ├── app/                # Next.js app directory
-│   ├── components/         # React components
-│   ├── lib/                # Utility functions
+│   │   ├── api/            # API routes
+│   │   ├── components/     # Reusable components
+│   │   ├── dashboard/      # Dashboard pages
+│   │   ├── inventory/      # Inventory management pages
+│   │   ├── login/          # Authentication pages
+│   │   ├── orders/         # Order management pages
+│   │   ├── services/       # Service management pages
+│   │   ├── users/          # User management pages
+│   │   └── page.tsx        # Home page
+│   ├── lib/                # Utility functions and hooks
 │   ├── public/             # Static assets
-│   └── package.json        # Dependencies
-├── docker-compose.yml      # Docker configuration
+│   └── package.json        # Frontend dependencies
+│
 └── README.md               # Project documentation
 ```
 
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- MySQL (v8 or higher)
+- npm or yarn
+
+### Backend Setup
+
+1. Navigate to the backend directory:
+
+   ```
+   cd backend
+   ```
+
+2. Install dependencies:
+
+   ```
+   npm install
+   ```
+
+3. Create a `.env` file with the following variables:
+
+   ```
+   PORT=3001
+   NODE_ENV=development
+
+   # Database
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASS=your_password
+   DB_NAME=car_dealership
+
+   # JWT
+   JWT_SECRET=your_jwt_secret
+   JWT_EXPIRES_IN=1d
+   ```
+
+4. Start the development server:
+   ```
+   npm run dev
+   ```
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+
+   ```
+   cd frontend
+   ```
+
+2. Install dependencies:
+
+   ```
+   npm install
+   ```
+
+3. Create a `.env.local` file with the following variables:
+
+   ```
+   NEXT_PUBLIC_API_URL=http://localhost:3001
+   ```
+
+4. Start the development server:
+
+   ```
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
 ## API Documentation
 
-The API documentation is available at http://localhost:3001/api-docs when the server is running.
+The API follows RESTful principles and uses JWT for authentication.
 
-## Testing
+### Authentication Endpoints
 
-### Backend Tests
+- `POST /api/auth/register` - Register a new user
+- `POST /api/auth/login` - Authenticate a user and get a token
+- `POST /api/auth/refresh` - Refresh an authentication token
+- `GET /api/auth/me` - Get the current authenticated user
 
-```bash
-cd backend
-npm test
-```
+### Car Endpoints
 
-### Frontend Tests
+- `GET /api/cars` - Get all cars with filtering and pagination
+- `GET /api/cars/:id` - Get a specific car by ID
+- `POST /api/cars` - Create a new car (Admin/Staff only)
+- `PUT /api/cars/:id` - Update a car (Admin/Staff only)
+- `DELETE /api/cars/:id` - Delete a car (Admin only)
 
-```bash
-cd frontend
-npm test
-```
+### Spare Parts Endpoints
 
-## Contributing
+- `GET /api/spare-parts` - Get all spare parts with filtering and pagination
+- `GET /api/spare-parts/:id` - Get a specific spare part by ID
+- `POST /api/spare-parts` - Create a new spare part (Admin/Staff only)
+- `PUT /api/spare-parts/:id` - Update a spare part (Admin/Staff only)
+- `DELETE /api/spare-parts/:id` - Delete a spare part (Admin only)
+- `POST /api/spare-parts/:id/stock` - Adjust stock levels (Admin/Staff only)
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+### Order Endpoints
+
+- `GET /api/orders` - Get all orders (Admin/Staff only)
+- `GET /api/orders/:id` - Get a specific order
+- `POST /api/orders` - Create a new order
+- `PUT /api/orders/:id/status` - Update order status (Admin/Staff only)
+- `POST /api/orders/:id/cancel` - Cancel an order
+
+### Service Endpoints
+
+- `GET /api/services` - Get all service appointments (Admin/Staff only)
+- `GET /api/services/:id` - Get a specific service appointment
+- `POST /api/services` - Create a new service appointment
+- `PUT /api/services/:id` - Update a service appointment (Admin/Staff only)
+- `POST /api/services/:id/cancel` - Cancel a service appointment
+
+### User Endpoints
+
+- `GET /api/users` - Get all users (Admin only)
+- `GET /api/users/:id` - Get a specific user
+- `PUT /api/users/:id` - Update a user
+- `DELETE /api/users/:id` - Delete a user (Admin only)
+- `GET /api/users/:id/orders` - Get orders for a specific user
+- `GET /api/users/:id/services` - Get services for a specific user
+
+### Dashboard Endpoints
+
+- `GET /api/dashboard/summary` - Get summary statistics (Admin/Staff only)
+- `GET /api/dashboard/sales` - Get sales data for charts (Admin/Staff only)
+- `GET /api/dashboard/inventory` - Get inventory status (Admin/Staff only)
+- `GET /api/dashboard/upcoming` - Get upcoming activities (Admin/Staff only)
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgements
-
-- [Express.js](https://expressjs.com/)
-- [Next.js](https://nextjs.org/)
-- [Sequelize](https://sequelize.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Docker](https://www.docker.com/)
+This project is licensed under the ISC License.

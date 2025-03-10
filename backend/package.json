@@ -1,17 +1,14 @@
 {
-  "name": "car-dealership-api",
+  "name": "car-dealership-backend",
   "version": "1.0.0",
-  "description": "Modern Car Dealership API",
+  "description": "Backend API for Car Dealership Management System",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "jest --detectOpenHandles",
-    "test:watch": "jest --watch",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "db:migrate": "sequelize-cli db:migrate",
-    "db:seed": "sequelize-cli db:seed:all"
+    "test": "jest",
+    "lint": "eslint src/**/*.js",
+    "seed": "node src/seeders/index.js"
   },
   "keywords": [
     "car",
@@ -22,24 +19,27 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.17.1",
-    "express-rate-limit": "^6.7.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
     "express-validator": "^7.0.1",
-    "helmet": "^8.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
-    "mysql2": "^2.3.3",
-    "redis": "^4.6.7",
-    "sequelize": "^6.31.1",
-    "winston": "^3.8.2"
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.6.5",
+    "sequelize": "^6.35.2",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
-    "jest": "^29.5.0",
-    "nodemon": "^2.0.15",
-    "sequelize-cli": "^6.6.0",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2",
     "supertest": "^6.3.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
